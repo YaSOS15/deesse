@@ -3,427 +3,535 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Parfumerie Élégance — Accueil</title>
-  <meta name="description" content="Boutique en ligne de parfums : découvrir, commander et contact" />
+  <title>Trésor Éthéré — Parfumerie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* --------- Reset & base --------- */
-    *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#f6f6f8;
+      --pink:#ff6fa3;
+      --orange:#ff8a3d;
+      --bg:#fff6fb;
+      --muted:#6b6b6b;
       --card:#ffffff;
-      --accent:#b76e79; /* dusty rose */
-      --muted:#7a7a82;
-      --glass: rgba(255,255,255,0.6);
-      --shadow: 0 6px 18px rgba(20,20,30,0.06);
-      --max-width:1200px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --glass: rgba(255,255,255,0.75);
+      --radius:16px;
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    body{background:linear-gradient(180deg,var(--bg),#ffffff 60%);color:#222;line-height:1.45}
-    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
-
-    /* --------- Header / Nav --------- */
-    header{position:sticky;top:0;background:rgba(255,255,255,0.7);backdrop-filter:blur(6px);z-index:40;border-bottom:1px solid rgba(0,0,0,0.04)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 8px}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#222;min-height:100vh}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(90deg,var(--pink),var(--orange));color:white;position:sticky;top:0;z-index:60;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#f4b6c1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:var(--shadow)}
-    .brand h1{font-size:18px}
-    nav ul{display:flex;gap:14px;list-style:none}
-    nav a{padding:8px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600}
-    nav a.active, nav a:hover{background:var(--glass);color:var(--accent)}
-    .actions{display:flex;gap:10px;align-items:center}
-    .btn{border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .btn.primary{background:var(--accent);color:white;box-shadow:var(--shadow)}
-    .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
+    .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--orange),var(--pink));display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:20px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:500}
+    nav a.active, nav a:hover{background:rgba(255,255,255,0.14)}
+    .cta{display:flex;gap:10px;align-items:center}
+    .btn{background:white;color:var(--pink);padding:8px 14px;border-radius:999px;font-weight:700;border:none;cursor:pointer;transition:transform .12s}
+    .btn:hover{transform:translateY(-2px)}
 
-    /* --------- Hero --------- */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
-    .hero-left h2{font-size:36px;margin-bottom:12px}
-    .hero-left p{color:var(--muted);margin-bottom:18px}
+    /* Hamburger */
+    .hamburger{display:none;width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.12);align-items:center;justify-content:center;cursor:pointer}
+    .hamburger span{display:block;width:20px;height:2px;background:white;border-radius:2px;position:relative}
+    .hamburger span::after,.hamburger span::before{content:'';position:absolute;width:20px;height:2px;background:white;border-radius:2px}
+    .hamburger span::before{top:-6px}
+    .hamburger span::after{top:6px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;padding:36px 22px;align-items:center}
+    .hero-left{max-width:760px}
+    h1{font-size:36px;margin:0 0 10px}
+    p.lead{margin:0 0 16px;color:var(--muted)}
     .search{display:flex;gap:8px}
-    .search input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.06)}
-    .hero-right{background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.3));padding:18px;border-radius:14px;box-shadow:var(--shadow)}
-    .featured{display:flex;gap:12px;align-items:center}
-    .perfume{width:96px}
-    .perfume img{width:100%;border-radius:10px}
+    .search input{flex:1;padding:12px;border-radius:12px;border:none;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .search button{padding:12px 16px;border-radius:12px;border:none;background:linear-gradient(90deg,var(--orange),var(--pink));color:white;font-weight:700;cursor:pointer}
 
-    /* --------- Sections --------- */
-    section{padding:32px 0}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:10px}
-    .card h3{margin-bottom:6px}
-    .price{font-weight:800;color:var(--accent)}
+    .hero-right{background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));border-radius:18px;padding:18px;backdrop-filter: blur(4px);box-shadow:0 10px 30px rgba(255,138,61,0.08)}
+    .feature{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    .feature h3{margin:0 0 6px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
 
-    /* --------- About / Contact forms --------- */
-    .columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    label{display:block;margin-bottom:8px;font-weight:600}
-    input[type=text],input[type=email],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
-    textarea{min-height:120px}
+    /* Products */
+    .container{padding:22px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:14px;padding:12px;box-shadow:0 10px 20px rgba(0,0,0,0.05);display:flex;flex-direction:column;gap:12px;transition:transform .12s}
+    .card:focus-within, .card:hover{transform:translateY(-6px)}
+    .thumb{height:180px;border-radius:10px;background:linear-gradient(135deg,var(--pink),var(--orange));display:flex;align-items:flex-end;padding:12px;color:white;font-weight:700;background-size:cover;background-position:center}
+    .price{font-weight:700;color:var(--orange)}
+    .card button{border:none;background:linear-gradient(90deg,var(--orange),var(--pink));color:white;padding:8px 12px;border-radius:10px;cursor:pointer}
 
-    /* --------- Footer --------- */
-    footer{padding:28px 0;color:var(--muted)}
+    /* About & Contact */
+    .about, .contact{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:24px}
+    .about p, .contact p{color:var(--muted)}
+    form.contact-form{display:flex;flex-direction:column;gap:10px;background:var(--card);padding:16px;border-radius:12px;box-shadow:0 10px 20px rgba(0,0,0,0.04)}
+    form.contact-form input, form.contact-form textarea{padding:10px;border-radius:8px;border:1px solid #eee}
+    form.contact-form button{padding:10px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--pink),var(--orange));color:white;font-weight:700;cursor:pointer}
 
-    /* --------- Modal (product quick view) --------- */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(10,10,12,0.45);display:none;align-items:center;justify-content:center;z-index:80}
-    .modal{background:var(--card);padding:18px;border-radius:12px;max-width:920px;width:94%;display:grid;grid-template-columns:380px 1fr;gap:18px}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:100;visibility:hidden;opacity:0;transition:all .18s}
+    .modal-backdrop.visible{visibility:visible;opacity:1}
+    .modal{background:var(--card);padding:18px;border-radius:12px;width:min(720px,94%);box-shadow:0 20px 50px rgba(0,0,0,0.25)}
+    .modal h3{margin:0 0 8px}
+    .cart-list{max-height:320px;overflow:auto;margin:12px 0}
+    .cart-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #eee}
 
-    /* --------- Responsive --------- */
-    @media(max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .columns{grid-template-columns:1fr}
-      nav ul{display:none}
-    }
-    @media(max-width:560px){
-      .grid{grid-template-columns:1fr}
-      .logo{width:40px;height:40px}
-      .hero-left h2{font-size:26px}
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
+
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;}
+      .about, .contact{grid-template-columns:1fr}
+      nav{display:none}
+      .hamburger{display:flex}
+      .mobile-nav{position:fixed;right:12px;top:68px;background:white;padding:10px;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.12);display:none;flex-direction:column;gap:6px;z-index:70}
+      .mobile-nav.show{display:flex}
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo">PE</div>
-        <div>
-          <h1>Parfumerie Élégance</h1>
-          <small style="color:var(--muted)">Senteurs raffinées • Livraison locale</small>
-        </div>
+    <div class="brand" aria-hidden="false">
+      <div class="logo" aria-hidden="true">TE</div>
+      <div>
+        <div style="font-weight:700">Trésor Éthéré</div>
+        <div style="font-size:12px;opacity:.95">Parfumerie & Collections</div>
       </div>
+    </div>
 
-      <nav>
-        <ul id="menu">
-          <li><a href="#accueil" data-tab="accueil" class="active">Accueil</a></li>
-          <li><a href="#decouvrir" data-tab="decouvrir">Découvrir</a></li>
-          <li><a href="#commander" data-tab="commander">Commander</a></li>
-          <li><a href="#apropos" data-tab="apropos">À propos</a></li>
-          <li><a href="#contact" data-tab="contact">Contact</a></li>
-        </ul>
-      </nav>
+    <nav id="main-nav" role="navigation" aria-label="Navigation principale">
+      <a href="#acceuil" class="active" data-tab="acceuil">Accueil</a>
+      <a href="#decouvrir" data-tab="decouvrir">Découvrir</a>
+      <a href="#apropos" data-tab="apropos">À propos</a>
+      <a href="#contact" data-tab="contact">Contact</a>
+    </nav>
 
-      <div class="actions">
-        <button class="btn ghost" id="btnCart">Panier (0)</button>
-        <button class="btn primary" id="btnOrder">Commander</button>
-      </div>
+    <div class="cta">
+      <button class="btn" id="view-cart" aria-haspopup="dialog" aria-controls="cart-modal">Panier (0)</button>
+      <button class="hamburger" id="hambtn" aria-label="Ouvrir le menu">
+        <span></span>
+      </button>
+    </div>
+
+    <!-- mobile nav -->
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <a href="#acceuil" data-tab="acceuil">Accueil</a>
+      <a href="#decouvrir" data-tab="decouvrir">Découvrir</a>
+      <a href="#apropos" data-tab="apropos">À propos</a>
+      <a href="#contact" data-tab="contact">Contact</a>
     </div>
   </header>
 
-  <main class="container">
-    <!-- Accueil -->
-    <section id="accueil" class="tabcontent">
-      <div class="hero">
-        <div class="hero-left">
-          <h2>Bienvenue chez Parfumerie Élégance</h2>
-          <p>Des collections sélectionnées pour révéler votre signature olfactive. Explorez, testez et commandez en quelques clics.</p>
-          <div class="search">
-            <input id="searchInput" placeholder="Rechercher parfum, marque ou note..." />
-            <button class="btn primary" id="searchBtn">Rechercher</button>
-          </div>
+  <main>
+    <section class="hero container" id="acceuil">
+      <div class="hero-left">
+        <h1>Parfums uniques, émotions durables</h1>
+        <p class="lead">Découvre notre sélection de fragrances artisanales — créées pour évoquer des souvenirs, des moments, des personnalités. Livraison disponible dans tout le pays.</p>
 
-          <div style="margin-top:18px;display:flex;gap:10px">
-            <button class="btn ghost" onclick="switchTab('decouvrir')">Découvrir nos nouveautés</button>
-            <button class="btn primary" onclick="switchTab('commander')">Commander maintenant</button>
-          </div>
+        <div class="search" style="margin-bottom:18px">
+          <input type="search" id="search" placeholder="Rechercher un parfum, une collection..." aria-label="Recherche de parfum">
+          <button id="search-btn">Rechercher</button>
         </div>
 
-        <aside class="hero-right">
-          <h4 style="margin-bottom:8px">Coup de cœur</h4>
-          <div class="featured">
-            <div class="perfume">
-              <img src="https://images.unsplash.com/photo-1542038784456-0f9c1b3a6b13?auto=format&fit=crop&w=600&q=60" alt="flacon" />
-            </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <div class="feature" style="flex:1">
+            <h3>Livraison rapide</h3>
+            <p>Livraison 48-72h selon la zone.</p>
+          </div>
+          <div class="feature" style="flex:1">
+            <h3>Produits artisanaux</h3>
+            <p>Compositions pensées et imaginées par nos parfumeurs.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="false">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--orange));display:flex;align-items:center;justify-content:center;color:white;font-weight:700">NEW</div>
             <div>
-              <strong>Rêve de Rose — 50ml</strong>
-              <p style="color:var(--muted);margin-top:8px">Une rose moderne, velours et ambre. Parfait pour les soirées.</p>
-              <div style="margin-top:10px"><span class="price">39 000 XAF</span></div>
+              <div style="font-weight:700">Édition limitée</div>
+              <div style="color:var(--muted);font-size:13px">Un sillage floral & boisé</div>
             </div>
           </div>
-        </aside>
+
+          <div class="feature">
+            <h3>Choisis ton coffret</h3>
+            <p>Compose ton propre coffret cadeau — emballage élégant, papier doré et ruban.</p>
+          </div>
+
+          <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
+            <div style="font-size:14px;color:var(--muted)">Service client : +241 0X XX XX XX</div>
+            <button class="btn" onclick="scrollToSection('decouvrir')">Découvrir</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="container" id="decouvrir">
+      <div class="section-title">
+        <h2>Nos parfums</h2>
+        <div style="color:var(--muted);font-size:14px">Sélection créée pour toi</div>
       </div>
 
-      <h3 style="margin-top:18px;margin-bottom:12px">Produits populaires</h3>
-      <div class="grid" id="productsGrid">
-        <!-- Cards ajoutés via JS -->
+      <div class="grid" id="products" aria-live="polite">
+        <!-- Cards générées par JS -->
       </div>
     </section>
 
-    <!-- Découvrir -->
-    <section id="decouvrir" class="tabcontent" style="display:none">
-      <h2>Découvrir</h2>
-      <p style="color:var(--muted);margin-bottom:12px">Parcourez nos collections, filtrer par notes et marque.</p>
-
-      <div style="margin-bottom:16px">
-        <label>Filtrer par note :</label>
-        <select id="filterNote">
-          <option value="">-- Toutes --</option>
-          <option value="floral">Floral</option>
-          <option value="boisé">Boisé</option>
-          <option value="oriental">Oriental</option>
-          <option value="frais">Frais</option>
-        </select>
-      </div>
-
-      <div class="grid" id="discoverGrid"></div>
-    </section>
-
-    <!-- Commander -->
-    <section id="commander" class="tabcontent" style="display:none">
-      <h2>Commander</h2>
-      <p style="color:var(--muted);margin-bottom:12px">Remplissez le formulaire ci‑dessous pour valider votre commande.</p>
-
-      <div class="columns">
-        <div class="card">
-          <h3>Votre commande</h3>
-          <div id="orderSummary">Aucun produit sélectionné.</div>
-        </div>
-
-        <div class="card">
-          <h3>Formulaire de livraison</h3>
-          <form id="orderForm">
-            <label>Nom complet</label>
-            <input type="text" id="name" required />
-
-            <label>Email</label>
-            <input type="email" id="email" required />
-
-            <label>Adresse de livraison</label>
-            <input type="text" id="address" required />
-
-            <label>Méthode de paiement</label>
-            <select id="payment">
-              <option>Cash à la livraison</option>
-              <option>Mobile Money</option>
-            </select>
-
-            <div style="margin-top:12px;display:flex;gap:8px">
-              <button type="submit" class="btn primary">Valider la commande</button>
-              <button type="button" class="btn ghost" onclick="clearCart()">Vider</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- À propos -->
-    <section id="apropos" class="tabcontent" style="display:none">
-      <h2>À propos de Parfumerie Élégance</h2>
-      <p style="color:var(--muted);margin-top:10px">Nous mettons en avant des parfums sélectionnés pour leur qualité et leur originalité. Livraison partout au Gabon.</p>
-
-      <div style="margin-top:16px" class="grid">
-        <div class="card">
-          <h3>Notre mission</h3>
-          <p>Proposer des fragrances qui racontent une histoire — accessible, responsable et élégante.</p>
-        </div>
-        <div class="card">
-          <h3>Valeurs</h3>
-          <p>Qualité • Authenticité • Service client</p>
-        </div>
-        <div class="card">
-          <h3>Service client</h3>
-          <p>Une question ? Écrivez-nous depuis l'onglet Contact ou appelez le +241 00 00 00 00.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="tabcontent" style="display:none">
-      <h2>Contact</h2>
-      <p style="color:var(--muted);margin-top:10px">Nous sommes là pour vous aider — envoyez un message.</p>
-
-      <div class="columns" style="margin-top:12px">
+    <section class="container" id="apropos">
+      <div class="about">
         <div>
-          <form id="contactForm" class="card">
-            <label>Nom</label>
-            <input type="text" id="cname" />
-            <label>Email</label>
-            <input type="email" id="cemail" />
-            <label>Message</label>
-            <textarea id="cmessage"></textarea>
-            <div style="margin-top:10px"><button class="btn primary" type="submit">Envoyer</button></div>
-          </form>
+          <h2>À propos de Trésor Éthéré</h2>
+          <p>Trésor Éthéré est une maison de parfum qui mêle tradition et modernité. Nous travaillons avec des essences précieuses pour créer des compositions qui racontent une histoire. Chaque flacon est pensé comme un petit trésor — pour toi ou à offrir.</p>
+
+          <p style="margin-top:12px">Nos engagements : qualité, transparence sur les ingrédients, packaging responsable et un service client attentionné.</p>
         </div>
 
         <div>
-          <div class="card">
-            <h3>Nos coordonnées</h3>
-            <p>Téléphone : +241 00 00 00 00</p>
-            <p>Adresse : Libreville, Gabon</p>
-            <p>Email : contact@parfumerie-elegance.ga</p>
+          <div class="feature">
+            <h3>Visite notre boutique</h3>
+            <p>Retrouve-nous du lundi au samedi, de 9h à 19h.</p>
           </div>
+
+          <div class="feature" style="margin-top:12px">
+            <h3>Programme fidélité</h3>
+            <p>Accumule des points à chaque achat et repars avec des avantages exclusifs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="contact">
+      <div class="contact">
+        <div>
+          <h2>Contacte-nous</h2>
+          <p>Une question ? Un conseil parfum ? Écris-nous, nous répondons sous 48h ouvrées.</p>
+
+          <div style="margin-top:12px">
+            <strong>Adresse :</strong> 12 Rue des Fleurs, Libreville<br>
+            <strong>Téléphone :</strong> +241 0X XX XX XX<br>
+            <strong>Email :</strong> contact@tresorethere.com
+          </div>
+        </div>
+
+        <div>
+          <form class="contact-form" id="contact-form" novalidate>
+            <input type="text" id="name" placeholder="Ton nom" required>
+            <input type="email" id="email" placeholder="Ton email" required>
+            <textarea id="message" rows="5" placeholder="Ton message" required></textarea>
+            <button type="submit">Envoyer</button>
+          </form>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="container">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-      <div>
-        <strong>Parfumerie Élégance</strong>
-        <div style="color:var(--muted)">© <span id="year"></span> — Tous droits réservés.</div>
-      </div>
-      <div style="color:var(--muted)">Suivez-nous : Instagram • Facebook • X</div>
-    </div>
+  <footer>
+    © <span id="year"></span> Trésor Éthéré — Parfumerie. Tous droits réservés.
   </footer>
 
-  <!-- Modal -->
-  <div id="modalBackdrop" class="modal-backdrop">
-    <div class="modal" role="dialog" aria-modal="true">
-      <div>
-        <img id="modalImg" src="" alt="produit" style="width:100%;border-radius:10px;height:320px;object-fit:cover" />
-      </div>
-      <div>
-        <h3 id="modalTitle">Titre</h3>
-        <p id="modalDesc" style="color:var(--muted)"></p>
-        <div style="margin-top:12px"><strong id="modalPrice" class="price"></strong></div>
-        <div style="margin-top:18px;display:flex;gap:8px">
-          <button class="btn primary" id="addToCart">Ajouter au panier</button>
-          <button class="btn ghost" onclick="closeModal()">Fermer</button>
+  <!-- Modal Panier -->
+  <div class="modal-backdrop" id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="modal" id="cart-content">
+      <h3 id="cart-title">Ton panier</h3>
+      <div id="cart-items" class="cart-list" aria-live="polite"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+        <div style="font-weight:700">Total : <span id="cart-total">0.00 €</span></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn" id="checkout-btn">Procéder</button>
+          <button id="close-cart" style="padding:8px 12px;border-radius:10px;border:none;background:#eee;cursor:pointer">Fermer</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal de commande -->
+  <div class="modal-backdrop" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-title">
+    <div class="modal" id="order-content">
+      <h3 id="order-title">Commander</h3>
+      <p id="order-desc" style="color:var(--muted)"></p>
+      <form id="order-form" style="display:flex;flex-direction:column;gap:10px;margin-top:12px" novalidate>
+        <input type="text" id="prod-name" readonly aria-readonly="true">
+        <input type="text" id="cust-name" placeholder="Ton nom" required>
+        <input type="tel" id="cust-phone" placeholder="Téléphone (ex: +241...)" required>
+        <input type="text" id="cust-address" placeholder="Adresse de livraison" required>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button type="submit" class="btn">Confirmer la commande</button>
+          <button type="button" id="order-cancel" style="padding:8px 12px;border-radius:10px;border:none;background:#eee;cursor:pointer">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // ---------- Données d'exemple ----------
-    const products = [
-      {id:1,title:'Rêve de Rose — 50ml',price:39000,notes:['floral'],img:'https://images.unsplash.com/photo-1542038784456-0f9c1b3a6b13?auto=format&fit=crop&w=800&q=60'},
-      {id:2,title:'Bois d'Or — 75ml',price:54000,notes:['boisé'],img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
-      {id:3,title:'Brise Marine — 100ml',price:46000,notes:['frais'],img:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=60'},
-      {id:4,title:'Ambre Mystique — 50ml',price:62000,notes:['oriental'],img:'https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=800&q=60'},
-      {id:5,title:'Jardin Secret — 30ml',price:28000,notes:['floral'],img:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=60'},
-      {id:6,title:'Cèdre Noble — 100ml',price:69000,notes:['boisé'],img:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=60'}
+    /***********************
+     * Données & état
+     ***********************/
+    const PRODUCTS = [
+      {id:1,name:'Aurora - Floral Ambré',desc:'Sillage floral mêlé de notes ambrées et vanillées.',price:29.99,img:''},
+      {id:2,name:'Noir Onyx - Boisé Épicé',desc:"Accord boisé profond avec un coeur d'épices.",price:34.50,img:''},
+      {id:3,name:'Matin Rose - Fruité & Frais',desc:"Une fraîcheur pétillante de fruits rouges et de rose.",price:24.00,img:''},
+      {id:4,name:'Coffret Éclat (3x30ml)',desc:'Sélection découverte — parfait pour offrir.',price:59.99,img:''}
     ];
 
-    // ---------- État ----------
-    let cart = [];
+    const productsEl = document.getElementById('products');
+    const cartBtn = document.getElementById('view-cart');
+    const orderModal = document.getElementById('order-modal');
+    const orderContent = document.getElementById('order-content');
+    const orderForm = document.getElementById('order-form');
+    const prodNameInput = document.getElementById('prod-name');
+    const modalDesc = document.getElementById('order-desc');
+    const searchInput = document.getElementById('search');
+    const yearEl = document.getElementById('year');
 
-    // ---------- Utils ----------
-    function formatPrice(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' XAF'; }
+    const cartModal = document.getElementById('cart-modal');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
 
-    // ---------- Rendu produits ----------
-    function renderProducts(gridEl, list){
-      gridEl.innerHTML = '';
+    const mobileNavBtn = document.getElementById('hambtn');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    let cart = JSON.parse(localStorage.getItem('te_cart') || '[]');
+
+    yearEl.textContent = new Date().getFullYear();
+
+    /***********************
+     * Utils
+     ***********************/
+    function formatPrice(n){ return Number(n).toFixed(2) + ' €'; }
+    function saveCart(){ localStorage.setItem('te_cart', JSON.stringify(cart)); updateCartUI(); }
+    function addToCart(product){ cart.push(product); saveCart(); toast(`${product.name} ajouté au panier`); }
+    function removeFromCart(index){ cart.splice(index,1); saveCart(); }
+
+    function toast(msg, time=2000){
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.style.position = 'fixed';
+      el.style.right = '20px';
+      el.style.bottom = '20px';
+      el.style.background = 'rgba(0,0,0,0.8)';
+      el.style.color = 'white';
+      el.style.padding = '10px 14px';
+      el.style.borderRadius = '8px';
+      el.style.zIndex = 200;
+      el.style.opacity = '0';
+      el.style.transition = 'opacity .2s';
+      document.body.appendChild(el);
+      requestAnimationFrame(()=> el.style.opacity = '1');
+      setTimeout(()=> el.style.opacity = '0', time);
+      setTimeout(()=> el.remove(), time + 200);
+    }
+
+    /***********************
+     * Rendu produits
+     ***********************/
+    function renderProducts(list){
+      productsEl.innerHTML = '';
       list.forEach(p=>{
-        const div = document.createElement('div'); div.className = 'card';
-        div.innerHTML = `
-          <img src="${p.img}" alt="${p.title}"/>
-          <h3>${p.title}</h3>
-          <div style=\"color:var(--muted);margin-bottom:8px\">Notes: ${p.notes.join(', ')}</div>
-          <div style=\"display:flex;justify-content:space-between;align-items:center\"> 
-            <div class=\"price\">${formatPrice(p.price)}</div>
-            <div style=\"display:flex;gap:8px\">
-              <button class=\"btn ghost\" onclick=\"openModal(${p.id})\">Voir</button>
-              <button class=\"btn primary\" onclick=\"addProductToCart(${p.id})\">Acheter</button>
+        const card = document.createElement('article');
+        card.className = 'card';
+        // Utilize background image if provided, otherwise gradient
+        const thumbStyle = p.img ? `background-image:url('${p.img}');` : '';
+        card.innerHTML = `
+          <div class="thumb" style="${thumbStyle}">${!p.img? p.name : ''}</div>
+          <div style="flex:1">
+            <div style="font-weight:700">${p.name}</div>
+            <div style="color:var(--muted);font-size:13px;margin:8px 0">${p.desc}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div class="price">${formatPrice(p.price)}</div>
+              <div style="display:flex;gap:8px">
+                <button data-id="${p.id}" class="btn order-btn">Commander</button>
+                <button data-add="${p.id}" style="padding:8px 12px;border-radius:10px;border:none;background:#eee;cursor:pointer">+ Panier</button>
+              </div>
             </div>
           </div>
         `;
-        gridEl.appendChild(div);
-      })
+        productsEl.appendChild(card);
+      });
+
+      // event delegation for generated buttons
+      document.querySelectorAll('.order-btn').forEach(b=> b.addEventListener('click', (e)=> {
+        const id = Number(e.currentTarget.dataset.id);
+        openOrder(id);
+      }));
+      document.querySelectorAll('[data-add]').forEach(b=> b.addEventListener('click', (e)=> {
+        const id = Number(e.currentTarget.dataset.add);
+        const p = PRODUCTS.find(x=>x.id===id);
+        addToCart(p);
+      }));
     }
 
-    // initial render
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.getElementById('year').textContent = new Date().getFullYear();
-      renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
-      renderProducts(document.getElementById('discoverGrid'), products);
+    renderProducts(PRODUCTS);
+    updateCartUI();
+
+    /***********************
+     * Modal commande
+     ***********************/
+    function openOrder(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      document.getElementById('order-title').textContent = `Commander — ${p.name}`;
+      modalDesc.textContent = p.desc;
+      prodNameInput.value = `${p.name} — ${formatPrice(p.price)}`;
+      orderModal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+      // focus first input
+      setTimeout(()=> document.getElementById('cust-name').focus(), 120);
+    }
+
+    function closeOrder(){
+      orderModal.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('order-cancel').addEventListener('click', closeOrder);
+    orderModal.addEventListener('click', (e)=> { if(e.target === orderModal) closeOrder(); });
+
+    orderForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // validation simple
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const address = document.getElementById('cust-address').value.trim();
+      if(!name || !phone || !address){ alert('Merci de remplir tous les champs de livraison.'); return; }
+      // simulate order
+      addToCart({ id: Date.now(), name: document.getElementById('prod-name').value, desc:'(Commande directe)', price:0.00 });
+      alert(`Merci ${name} ! Ta commande a bien été reçue. Nous te contacterons au numéro fourni.`);
+      orderForm.reset();
+      closeOrder();
     });
 
-    // ---------- Tabs ----------
-    const tabs = document.querySelectorAll('[data-tab]');
-    tabs.forEach(a=> a.addEventListener('click', (e)=>{ e.preventDefault(); switchTab(a.dataset.tab); }));
-    function switchTab(name){
-      // hide all
-      document.querySelectorAll('.tabcontent').forEach(s=> s.style.display='none');
-      document.getElementById(name).style.display = '';
-      // set active
-      document.querySelectorAll('#menu a').forEach(a=>a.classList.remove('active'));
-      const active = document.querySelector(#menu a[data-tab='${name}']);
-      if(active) active.classList.add('active');
-    }
-
-    // ---------- Modal ----------
-    function openModal(id){
-      const p = products.find(x=>x.id===id);
-      document.getElementById('modalImg').src = p.img;
-      document.getElementById('modalTitle').textContent = p.title;
-      document.getElementById('modalDesc').textContent = 'Notes: ' + p.notes.join(', ');
-      document.getElementById('modalPrice').textContent = formatPrice(p.price);
-      document.getElementById('modalBackdrop').style.display = 'flex';
-      document.getElementById('addToCart').onclick = ()=>{ addProductToCart(id); closeModal(); switchTab('commander'); }
-    }
-    function closeModal(){ document.getElementById('modalBackdrop').style.display = 'none'; }
-    document.getElementById('modalBackdrop').addEventListener('click', (e)=>{ if(e.target.id==='modalBackdrop') closeModal(); });
-
-    // ---------- Cart / Order ----------
-    function addProductToCart(id){
-      const p = products.find(x=>x.id===id);
-      cart.push(p);
-      updateCartUI();
-      toast(${p.title} ajouté au panier);
-    }
+    /***********************
+     * Panier (modal)
+     ***********************/
     function updateCartUI(){
-      document.getElementById('btnCart').textContent = Panier (${cart.length});
-      const summary = document.getElementById('orderSummary');
-      if(cart.length===0){ summary.innerHTML = 'Aucun produit sélectionné.'; return }
-      let html = '<ul>' + cart.map((c,i)=><li>${i+1}. ${c.title} — <strong>${formatPrice(c.price)}</strong></li>).join('') + '</ul>';
-      html += <div style="margin-top:12px;font-weight:800">Total : ${formatPrice(cart.reduce((s,c)=>s+c.price,0))}</div>;
-      summary.innerHTML = html;
-    }
-    function clearCart(){ cart = []; updateCartUI(); }
-
-    // Handle order form submit (frontend-only demo)
-    document.getElementById('orderForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      if(cart.length===0){ alert('Ajoutez au moins un produit au panier.'); return }
-      const payload = {
-        name:document.getElementById('name').value,
-        email:document.getElementById('email').value,
-        address:document.getElementById('address').value,
-        payment:document.getElementById('payment').value,
-        items:cart
-      };
-      console.log('Commande simulée',payload);
-      alert('Merci ! Votre commande a été enregistrée (simulation).');
-      clearCart();
-      document.getElementById('orderForm').reset();
-    });
-
-    // Contact form
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      alert('Merci pour votre message — nous vous répondrons bientôt. (simulation)');
-      e.target.reset();
-    });
-
-    // Filters
-    document.getElementById('filterNote').addEventListener('change', ()=>{
-      const v = document.getElementById('filterNote').value;
-      const list = v? products.filter(p=>p.notes.includes(v)) : products;
-      renderProducts(document.getElementById('discoverGrid'), list);
-    });
-
-    // Search
-    document.getElementById('searchBtn').addEventListener('click', ()=>{
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      if(!q) return renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
-      const found = products.filter(p=> p.title.toLowerCase().includes(q) || p.notes.join(' ').includes(q));
-      renderProducts(document.getElementById('productsGrid'), found);
-      switchTab('accueil');
-    });
-
-    // Simple toast
-    function toast(msg){
-      const el = document.createElement('div');
-      el.textContent = msg; el.style.position='fixed';el.style.right='20px';el.style.bottom='20px';el.style.background='rgba(0,0,0,0.8)';el.style.color='white';el.style.padding='10px 14px';el.style.borderRadius='8px';el.style.zIndex=120;
-      document.body.appendChild(el);
-      setTimeout(()=> el.style.opacity=0,2200);
-      setTimeout(()=> el.remove(),2700);
+      cartBtn.textContent = `Panier (${cart.length})`;
+      // fill cart modal
+      cartItemsEl.innerHTML = '';
+      if(cart.length === 0){
+        cartItemsEl.innerHTML = '<div style="color:var(--muted)">Ton panier est vide.</div>';
+        cartTotalEl.textContent = formatPrice(0);
+        return;
+      }
+      let total = 0;
+      cart.forEach((it, idx)=>{
+        total += Number(it.price || 0);
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `<div style="max-width:70%"><strong>${it.name}</strong><div style="color:var(--muted);font-size:13px">${it.desc || ''}</div></div>
+                         <div style="text-align:right"><div>${formatPrice(it.price || 0)}</div>
+                         <button data-rem="${idx}" style="margin-top:6px;padding:6px 8px;border-radius:8px;border:none;background:#f7f7f7;cursor:pointer">Suppr</button></div>`;
+        cartItemsEl.appendChild(div);
+      });
+      cartTotalEl.textContent = formatPrice(total);
+      // remove handlers
+      cartItemsEl.querySelectorAll('[data-rem]').forEach(btn => btn.addEventListener('click', (e)=>{
+        const idx = Number(e.currentTarget.dataset.rem);
+        removeFromCart(idx);
+      }));
     }
 
-    // Expose small helpers to global (used inline)
-    window.switchTab = switchTab; window.openModal = openModal; window.addProductToCart = addProductToCart; window.clearCart = clearCart; window.closeModal = closeModal;
+    cartBtn.addEventListener('click', ()=> {
+      cartModal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('close-cart').addEventListener('click', ()=> {
+      cartModal.classList.remove('visible');
+      document.body.style.overflow = '';
+    });
+
+    cartModal.addEventListener('click', (e)=> { if(e.target === cartModal) { cartModal.classList.remove('visible'); document.body.style.overflow = ''; } });
+
+    checkoutBtn.addEventListener('click', ()=> {
+      if(cart.length === 0){ alert('Ton panier est vide.'); return; }
+      // go to order modal prefilled with a quick summary
+      prodNameInput.value = `Panier (${cart.length} article(s))`;
+      modalDesc.textContent = `Total : ${cartTotalEl.textContent}`;
+      cartModal.classList.remove('visible');
+      orderModal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    });
+
+    /***********************
+     * Recherche avec debounce
+     ***********************/
+    function debounce(fn, wait=300){
+      let t;
+      return function(...args){ clearTimeout(t); t = setTimeout(()=> fn.apply(this,args), wait); };
+    }
+
+    function handleSearch(){
+      const q = searchInput.value.trim().toLowerCase();
+      if(!q){ renderProducts(PRODUCTS); return; }
+      const filtered = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+      renderProducts(filtered);
+    }
+
+    document.getElementById('search-btn').addEventListener('click', handleSearch);
+    searchInput.addEventListener('input', debounce(handleSearch, 350));
+
+    /***********************
+     * Contact form
+     ***********************/
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const nm = document.getElementById('name').value.trim();
+      const em = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if(!nm || !em || !msg){ alert('Merci de remplir tous les champs.'); return; }
+      // simulate sending
+      toast(`Merci ${nm} ! Message reçu.`);
+      contactForm.reset();
+    });
+
+    /***********************
+     * Navigation + mobile menu
+     ***********************/
+    document.querySelectorAll('nav a, .mobile-nav a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const tab = a.dataset.tab;
+        document.querySelectorAll('nav a').forEach(n=>n.classList.remove('active'));
+        document.querySelector(`nav a[data-tab="${tab}"]`)?.classList.add('active');
+        scrollToSection(tab);
+        // close mobile nav if open
+        mobileNav.classList.remove('show');
+      });
+    });
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    mobileNavBtn.addEventListener('click', ()=> {
+      mobileNav.classList.toggle('show');
+      const shown = mobileNav.classList.contains('show');
+      mobileNav.setAttribute('aria-hidden', !shown);
+    });
+
+    /***********************
+     * Keyboard: Escape closes modals
+     ***********************/
+    window.addEventListener('keydown', (e)=> {
+      if(e.key === 'Escape'){
+        if(orderModal.classList.contains('visible')) closeOrder();
+        if(cartModal.classList.contains('visible')) { cartModal.classList.remove('visible'); document.body.style.overflow = ''; }
+        mobileNav.classList.remove('show');
+      }
+    });
+
+    /***********************
+     * Initialize UI
+     ***********************/
+    function init(){
+      updateCartUI();
+    }
+    init();
+
   </script>
 </body>
 </html>
