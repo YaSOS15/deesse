@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parfumerie Élégance — Accueil</title>
+  <meta name="description" content="Boutique en ligne de parfums : découvrir, commander et contact" />
+  <style>
+    /* --------- Reset & base --------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f6f6f8;
+      --card:#ffffff;
+      --accent:#b76e79; /* dusty rose */
+      --muted:#7a7a82;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 18px rgba(20,20,30,0.06);
+      --max-width:1200px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{background:linear-gradient(180deg,var(--bg),#ffffff 60%);color:#222;line-height:1.45}
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+
+    /* --------- Header / Nav --------- */
+    header{position:sticky;top:0;background:rgba(255,255,255,0.7);backdrop-filter:blur(6px);z-index:40;border-bottom:1px solid rgba(0,0,0,0.04)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 8px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#f4b6c1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:var(--shadow)}
+    .brand h1{font-size:18px}
+    nav ul{display:flex;gap:14px;list-style:none}
+    nav a{padding:8px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.active, nav a:hover{background:var(--glass);color:var(--accent)}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+    .btn.primary{background:var(--accent);color:white;box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
+
+    /* --------- Hero --------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
+    .hero-left h2{font-size:36px;margin-bottom:12px}
+    .hero-left p{color:var(--muted);margin-bottom:18px}
+    .search{display:flex;gap:8px}
+    .search input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.06)}
+    .hero-right{background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.3));padding:18px;border-radius:14px;box-shadow:var(--shadow)}
+    .featured{display:flex;gap:12px;align-items:center}
+    .perfume{width:96px}
+    .perfume img{width:100%;border-radius:10px}
+
+    /* --------- Sections --------- */
+    section{padding:32px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:10px}
+    .card h3{margin-bottom:6px}
+    .price{font-weight:800;color:var(--accent)}
+
+    /* --------- About / Contact forms --------- */
+    .columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    label{display:block;margin-bottom:8px;font-weight:600}
+    input[type=text],input[type=email],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
+    textarea{min-height:120px}
+
+    /* --------- Footer --------- */
+    footer{padding:28px 0;color:var(--muted)}
+
+    /* --------- Modal (product quick view) --------- */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(10,10,12,0.45);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal{background:var(--card);padding:18px;border-radius:12px;max-width:920px;width:94%;display:grid;grid-template-columns:380px 1fr;gap:18px}
+
+    /* --------- Responsive --------- */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .columns{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+    @media(max-width:560px){
+      .grid{grid-template-columns:1fr}
+      .logo{width:40px;height:40px}
+      .hero-left h2{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">PE</div>
+        <div>
+          <h1>Parfumerie Élégance</h1>
+          <small style="color:var(--muted)">Senteurs raffinées • Livraison locale</small>
+        </div>
+      </div>
+
+      <nav>
+        <ul id="menu">
+          <li><a href="#accueil" data-tab="accueil" class="active">Accueil</a></li>
+          <li><a href="#decouvrir" data-tab="decouvrir">Découvrir</a></li>
+          <li><a href="#commander" data-tab="commander">Commander</a></li>
+          <li><a href="#apropos" data-tab="apropos">À propos</a></li>
+          <li><a href="#contact" data-tab="contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button class="btn ghost" id="btnCart">Panier (0)</button>
+        <button class="btn primary" id="btnOrder">Commander</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Accueil -->
+    <section id="accueil" class="tabcontent">
+      <div class="hero">
+        <div class="hero-left">
+          <h2>Bienvenue chez Parfumerie Élégance</h2>
+          <p>Des collections sélectionnées pour révéler votre signature olfactive. Explorez, testez et commandez en quelques clics.</p>
+          <div class="search">
+            <input id="searchInput" placeholder="Rechercher parfum, marque ou note..." />
+            <button class="btn primary" id="searchBtn">Rechercher</button>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px">
+            <button class="btn ghost" onclick="switchTab('decouvrir')">Découvrir nos nouveautés</button>
+            <button class="btn primary" onclick="switchTab('commander')">Commander maintenant</button>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <h4 style="margin-bottom:8px">Coup de cœur</h4>
+          <div class="featured">
+            <div class="perfume">
+              <img src="https://images.unsplash.com/photo-1542038784456-0f9c1b3a6b13?auto=format&fit=crop&w=600&q=60" alt="flacon" />
+            </div>
+            <div>
+              <strong>Rêve de Rose — 50ml</strong>
+              <p style="color:var(--muted);margin-top:8px">Une rose moderne, velours et ambre. Parfait pour les soirées.</p>
+              <div style="margin-top:10px"><span class="price">39 000 XAF</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <h3 style="margin-top:18px;margin-bottom:12px">Produits populaires</h3>
+      <div class="grid" id="productsGrid">
+        <!-- Cards ajoutés via JS -->
+      </div>
+    </section>
+
+    <!-- Découvrir -->
+    <section id="decouvrir" class="tabcontent" style="display:none">
+      <h2>Découvrir</h2>
+      <p style="color:var(--muted);margin-bottom:12px">Parcourez nos collections, filtrer par notes et marque.</p>
+
+      <div style="margin-bottom:16px">
+        <label>Filtrer par note :</label>
+        <select id="filterNote">
+          <option value="">-- Toutes --</option>
+          <option value="floral">Floral</option>
+          <option value="boisé">Boisé</option>
+          <option value="oriental">Oriental</option>
+          <option value="frais">Frais</option>
+        </select>
+      </div>
+
+      <div class="grid" id="discoverGrid"></div>
+    </section>
+
+    <!-- Commander -->
+    <section id="commander" class="tabcontent" style="display:none">
+      <h2>Commander</h2>
+      <p style="color:var(--muted);margin-bottom:12px">Remplissez le formulaire ci‑dessous pour valider votre commande.</p>
+
+      <div class="columns">
+        <div class="card">
+          <h3>Votre commande</h3>
+          <div id="orderSummary">Aucun produit sélectionné.</div>
+        </div>
+
+        <div class="card">
+          <h3>Formulaire de livraison</h3>
+          <form id="orderForm">
+            <label>Nom complet</label>
+            <input type="text" id="name" required />
+
+            <label>Email</label>
+            <input type="email" id="email" required />
+
+            <label>Adresse de livraison</label>
+            <input type="text" id="address" required />
+
+            <label>Méthode de paiement</label>
+            <select id="payment">
+              <option>Cash à la livraison</option>
+              <option>Mobile Money</option>
+            </select>
+
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button type="submit" class="btn primary">Valider la commande</button>
+              <button type="button" class="btn ghost" onclick="clearCart()">Vider</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="tabcontent" style="display:none">
+      <h2>À propos de Parfumerie Élégance</h2>
+      <p style="color:var(--muted);margin-top:10px">Nous mettons en avant des parfums sélectionnés pour leur qualité et leur originalité. Livraison partout au Gabon.</p>
+
+      <div style="margin-top:16px" class="grid">
+        <div class="card">
+          <h3>Notre mission</h3>
+          <p>Proposer des fragrances qui racontent une histoire — accessible, responsable et élégante.</p>
+        </div>
+        <div class="card">
+          <h3>Valeurs</h3>
+          <p>Qualité • Authenticité • Service client</p>
+        </div>
+        <div class="card">
+          <h3>Service client</h3>
+          <p>Une question ? Écrivez-nous depuis l'onglet Contact ou appelez le +241 00 00 00 00.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="tabcontent" style="display:none">
+      <h2>Contact</h2>
+      <p style="color:var(--muted);margin-top:10px">Nous sommes là pour vous aider — envoyez un message.</p>
+
+      <div class="columns" style="margin-top:12px">
+        <div>
+          <form id="contactForm" class="card">
+            <label>Nom</label>
+            <input type="text" id="cname" />
+            <label>Email</label>
+            <input type="email" id="cemail" />
+            <label>Message</label>
+            <textarea id="cmessage"></textarea>
+            <div style="margin-top:10px"><button class="btn primary" type="submit">Envoyer</button></div>
+          </form>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3>Nos coordonnées</h3>
+            <p>Téléphone : +241 00 00 00 00</p>
+            <p>Adresse : Libreville, Gabon</p>
+            <p>Email : contact@parfumerie-elegance.ga</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+      <div>
+        <strong>Parfumerie Élégance</strong>
+        <div style="color:var(--muted)">© <span id="year"></span> — Tous droits réservés.</div>
+      </div>
+      <div style="color:var(--muted)">Suivez-nous : Instagram • Facebook • X</div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div>
+        <img id="modalImg" src="" alt="produit" style="width:100%;border-radius:10px;height:320px;object-fit:cover" />
+      </div>
+      <div>
+        <h3 id="modalTitle">Titre</h3>
+        <p id="modalDesc" style="color:var(--muted)"></p>
+        <div style="margin-top:12px"><strong id="modalPrice" class="price"></strong></div>
+        <div style="margin-top:18px;display:flex;gap:8px">
+          <button class="btn primary" id="addToCart">Ajouter au panier</button>
+          <button class="btn ghost" onclick="closeModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Données d'exemple ----------
+    const products = [
+      {id:1,title:'Rêve de Rose — 50ml',price:39000,notes:['floral'],img:'https://images.unsplash.com/photo-1542038784456-0f9c1b3a6b13?auto=format&fit=crop&w=800&q=60'},
+      {id:2,title:'Bois d'Or — 75ml',price:54000,notes:['boisé'],img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
+      {id:3,title:'Brise Marine — 100ml',price:46000,notes:['frais'],img:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=60'},
+      {id:4,title:'Ambre Mystique — 50ml',price:62000,notes:['oriental'],img:'https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=800&q=60'},
+      {id:5,title:'Jardin Secret — 30ml',price:28000,notes:['floral'],img:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=60'},
+      {id:6,title:'Cèdre Noble — 100ml',price:69000,notes:['boisé'],img:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=60'}
+    ];
+
+    // ---------- État ----------
+    let cart = [];
+
+    // ---------- Utils ----------
+    function formatPrice(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' XAF'; }
+
+    // ---------- Rendu produits ----------
+    function renderProducts(gridEl, list){
+      gridEl.innerHTML = '';
+      list.forEach(p=>{
+        const div = document.createElement('div'); div.className = 'card';
+        div.innerHTML = `
+          <img src="${p.img}" alt="${p.title}"/>
+          <h3>${p.title}</h3>
+          <div style=\"color:var(--muted);margin-bottom:8px\">Notes: ${p.notes.join(', ')}</div>
+          <div style=\"display:flex;justify-content:space-between;align-items:center\"> 
+            <div class=\"price\">${formatPrice(p.price)}</div>
+            <div style=\"display:flex;gap:8px\">
+              <button class=\"btn ghost\" onclick=\"openModal(${p.id})\">Voir</button>
+              <button class=\"btn primary\" onclick=\"addProductToCart(${p.id})\">Acheter</button>
+            </div>
+          </div>
+        `;
+        gridEl.appendChild(div);
+      })
+    }
+
+    // initial render
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.getElementById('year').textContent = new Date().getFullYear();
+      renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
+      renderProducts(document.getElementById('discoverGrid'), products);
+    });
+
+    // ---------- Tabs ----------
+    const tabs = document.querySelectorAll('[data-tab]');
+    tabs.forEach(a=> a.addEventListener('click', (e)=>{ e.preventDefault(); switchTab(a.dataset.tab); }));
+    function switchTab(name){
+      // hide all
+      document.querySelectorAll('.tabcontent').forEach(s=> s.style.display='none');
+      document.getElementById(name).style.display = '';
+      // set active
+      document.querySelectorAll('#menu a').forEach(a=>a.classList.remove('active'));
+      const active = document.querySelector(#menu a[data-tab='${name}']);
+      if(active) active.classList.add('active');
+    }
+
+    // ---------- Modal ----------
+    function openModal(id){
+      const p = products.find(x=>x.id===id);
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalDesc').textContent = 'Notes: ' + p.notes.join(', ');
+      document.getElementById('modalPrice').textContent = formatPrice(p.price);
+      document.getElementById('modalBackdrop').style.display = 'flex';
+      document.getElementById('addToCart').onclick = ()=>{ addProductToCart(id); closeModal(); switchTab('commander'); }
+    }
+    function closeModal(){ document.getElementById('modalBackdrop').style.display = 'none'; }
+    document.getElementById('modalBackdrop').addEventListener('click', (e)=>{ if(e.target.id==='modalBackdrop') closeModal(); });
+
+    // ---------- Cart / Order ----------
+    function addProductToCart(id){
+      const p = products.find(x=>x.id===id);
+      cart.push(p);
+      updateCartUI();
+      toast(${p.title} ajouté au panier);
+    }
+    function updateCartUI(){
+      document.getElementById('btnCart').textContent = Panier (${cart.length});
+      const summary = document.getElementById('orderSummary');
+      if(cart.length===0){ summary.innerHTML = 'Aucun produit sélectionné.'; return }
+      let html = '<ul>' + cart.map((c,i)=><li>${i+1}. ${c.title} — <strong>${formatPrice(c.price)}</strong></li>).join('') + '</ul>';
+      html += <div style="margin-top:12px;font-weight:800">Total : ${formatPrice(cart.reduce((s,c)=>s+c.price,0))}</div>;
+      summary.innerHTML = html;
+    }
+    function clearCart(){ cart = []; updateCartUI(); }
+
+    // Handle order form submit (frontend-only demo)
+    document.getElementById('orderForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(cart.length===0){ alert('Ajoutez au moins un produit au panier.'); return }
+      const payload = {
+        name:document.getElementById('name').value,
+        email:document.getElementById('email').value,
+        address:document.getElementById('address').value,
+        payment:document.getElementById('payment').value,
+        items:cart
+      };
+      console.log('Commande simulée',payload);
+      alert('Merci ! Votre commande a été enregistrée (simulation).');
+      clearCart();
+      document.getElementById('orderForm').reset();
+    });
+
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Merci pour votre message — nous vous répondrons bientôt. (simulation)');
+      e.target.reset();
+    });
+
+    // Filters
+    document.getElementById('filterNote').addEventListener('change', ()=>{
+      const v = document.getElementById('filterNote').value;
+      const list = v? products.filter(p=>p.notes.includes(v)) : products;
+      renderProducts(document.getElementById('discoverGrid'), list);
+    });
+
+    // Search
+    document.getElementById('searchBtn').addEventListener('click', ()=>{
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      if(!q) return renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
+      const found = products.filter(p=> p.title.toLowerCase().includes(q) || p.notes.join(' ').includes(q));
+      renderProducts(document.getElementById('productsGrid'), found);
+      switchTab('accueil');
+    });
+
+    // Simple toast
+    function toast(msg){
+      const el = document.createElement('div');
+      el.textContent = msg; el.style.position='fixed';el.style.right='20px';el.style.bottom='20px';el.style.background='rgba(0,0,0,0.8)';el.style.color='white';el.style.padding='10px 14px';el.style.borderRadius='8px';el.style.zIndex=120;
+      document.body.appendChild(el);
+      setTimeout(()=> el.style.opacity=0,2200);
+      setTimeout(()=> el.remove(),2700);
+    }
+
+    // Expose small helpers to global (used inline)
+    window.switchTab = switchTab; window.openModal = openModal; window.addProductToCart = addProductToCart; window.clearCart = clearCart; window.closeModal = closeModal;
+  </script>
+</body>
+</html>
