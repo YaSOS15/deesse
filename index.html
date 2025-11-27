@@ -3,81 +3,152 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienvenue à LM.biouty</title>
+  <title>Bienvenue à LM.biouty — Parfumerie Élégance</title>
   <meta name="description" content="Boutique en ligne de parfums : découvrir, commander et contact" />
   <style>
-    /* --------- Reset & base --------- */
-    *{box-sizing:border-box;margin:0;padding:0}
+    /* ===== Variables & Base ===== */
     :root{
-      --bg:#f6f6f8;
-      --card:#ffffff;
-      --accent:#b76e79; /* dusty rose */
-      --muted:#7a7a82;
-      --glass: rgba(255,255,255,0.6);
-      --shadow: 0 6px 18px rgba(20,20,30,0.06);
+      --orange-vif: #FF7A00;      /* vibrant orange */
+      --orange-chaud:#E86F0C;     /* warm orange */
+      --rose-fuchsia: #FF3B7F;    /* vibrant pink */
+      --rose-poudre:#FFB7C2;      /* soft pink */
+      --blanc: #ffffff;
+      --blanc-casse: #fff8f6;
+      --muted: rgba(0,0,0,0.54);
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      --radius:14px;
       --max-width:1200px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family: "Times New Roman", Times, serif;
     }
-    body{background:linear-gradient(180deg,var(--bg),#ffffff 60%);color:#222;line-height:1.45}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      background: linear-gradient(180deg, var(--orange-chaud), var(--orange-vif) 45%, var(--rose-poudre) 100%);
+      color: #111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:40px;
+    }
     .container{max-width:var(--max-width);margin:0 auto;padding:28px}
 
-    /* --------- Header / Nav --------- */
-    header{position:sticky;top:0;background:rgba(255,255,255,0.7);backdrop-filter:blur(6px);z-index:40;border-bottom:1px solid rgba(0,0,0,0.04)}
+    /* ===== Header ===== */
+    header{
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky; top:0; z-index:40;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    }
     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 8px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#f4b6c1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:var(--shadow)}
-    .brand h1{font-size:18px}
-    nav ul{display:flex;gap:14px;list-style:none}
-    nav a{padding:8px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600}
-    nav a.active, nav a:hover{background:var(--glass);color:var(--accent)}
-    .actions{display:flex;gap:10px;align-items:center}
-    .btn{border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .btn.primary{background:var(--accent);color:white;box-shadow:var(--shadow)}
-    .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
+    .brand{display:flex;gap:12px;align-items:center;color:var(--blanc)}
+    .logo{
+      width:56px;height:56px;border-radius:12px;
+      background: linear-gradient(135deg,var(--rose-fuchsia),var(--orange-vif));
+      display:flex;align-items:center;justify-content:center;color:var(--blanc);
+      font-weight:700;font-size:20px;box-shadow:var(--card-shadow);
+    }
+    .brand h1{font-size:20px;color:var(--blanc);margin-bottom:2px;letter-spacing:0.6px}
+    .brand small{color:rgba(255,255,255,0.9);font-size:12px;opacity:0.95}
 
-    /* --------- Hero --------- */
+    nav ul{display:flex;gap:14px;list-style:none}
+    nav a{
+      padding:8px 14px;border-radius:10px;
+      color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600;
+      transition: all .18s;
+      border:1px solid rgba(255,255,255,0.06);
+      background:transparent;
+      backdrop-filter: blur(2px);
+    }
+    nav a.active, nav a:hover{
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      color:var(--blanc);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-family:"Times New Roman", Times, serif}
+    .btn.primary{
+      background: linear-gradient(90deg,var(--rose-fuchsia),var(--orange-vif));
+      color:var(--blanc); box-shadow: var(--card-shadow);
+    }
+    .btn.ghost{
+      background: transparent;color:var(--blanc);border:1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ===== Hero ===== */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
-    .hero-left h2{font-size:36px;margin-bottom:12px}
-    .hero-left p{color:var(--muted);margin-bottom:18px}
+    .hero-left h2{
+      font-size:44px;color:var(--blanc);line-height:1.02;margin-bottom:12px;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      font-style:italic;
+    }
+    .hero-left p{color:rgba(255,255,255,0.95);margin-bottom:18px;font-size:18px}
     .search{display:flex;gap:8px}
-    .search input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.06)}
-    .hero-right{background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.3));padding:18px;border-radius:14px;box-shadow:var(--shadow)}
+    .search input{
+      flex:1;padding:12px 14px;border-radius:12px;border:none;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);font-family:"Times New Roman", Times, serif;
+    }
+    .hero-right{
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      padding:18px;border-radius:var(--radius);box-shadow:var(--card-shadow);color:var(--blanc);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
     .featured{display:flex;gap:12px;align-items:center}
     .perfume{width:96px}
-    .perfume img{width:100%;border-radius:10px}
+    .perfume img{width:100%;border-radius:10px;object-fit:cover}
 
-    /* --------- Sections --------- */
-    section{padding:32px 0}
+    /* Stylish inscription decoration */
+    .inscription{
+      margin-top:18px;
+      font-size:20px;color:var(--blanc);
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      font-weight:700;letter-spacing:0.6px;text-align:center;
+    }
+
+    /* ===== Sections ===== */
+    section{padding:32px 0;background:transparent}
+    h2.section-title{font-size:28px;color:var(--blanc);margin-bottom:8px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
+    .card{
+      background: var(--blanc); padding:16px;border-radius:12px;box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0,0,0,0.04); color:#111;
+    }
     .card img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:10px}
-    .card h3{margin-bottom:6px}
-    .price{font-weight:800;color:var(--accent)}
+    .card h3{margin-bottom:6px;font-family:"Times New Roman", Times, serif}
+    .price{font-weight:800;color:var(--orange-vif)}
 
-    /* --------- About / Contact forms --------- */
+    /* About / Contact */
     .columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     label{display:block;margin-bottom:8px;font-weight:600}
-    input[type=text],input[type=email],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
+    input[type=text],input[type=email],textarea,select{
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);
+      font-family:"Times New Roman", Times, serif;
+    }
     textarea{min-height:120px}
 
-    /* --------- Footer --------- */
-    footer{padding:28px 0;color:var(--muted)}
+    /* Footer */
+    footer{padding:28px 0;color:rgba(255,255,255,0.95);font-family:"Times New Roman", Times, serif}
 
-    /* --------- Modal (product quick view) --------- */
+    /* Modal */
     .modal-backdrop{position:fixed;inset:0;background:rgba(10,10,12,0.45);display:none;align-items:center;justify-content:center;z-index:80}
-    .modal{background:var(--card);padding:18px;border-radius:12px;max-width:920px;width:94%;display:grid;grid-template-columns:380px 1fr;gap:18px}
+    .modal{background:var(--blanc);padding:18px;border-radius:12px;max-width:920px;width:94%;display:grid;grid-template-columns:380px 1fr;gap:18px;box-shadow: 0 30px 80px rgba(0,0,0,0.36)}
 
-    /* --------- Responsive --------- */
+    /* Responsive */
     @media(max-width:980px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:repeat(2,1fr)}
-      .columns{grid-template-columns:1fr}
       nav ul{display:none}
+      .hero-left h2{font-size:32px}
     }
     @media(max-width:560px){
       .grid{grid-template-columns:1fr}
       .logo{width:40px;height:40px}
       .hero-left h2{font-size:26px}
+      .modal{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -88,7 +159,7 @@
         <div class="logo">PE</div>
         <div>
           <h1>Parfumerie Élégance</h1>
-          <small style="color:var(--muted)">Senteurs raffinées • Livraison locale</small>
+          <small>Senteurs raffinées • Livraison locale</small>
         </div>
       </div>
 
@@ -114,8 +185,9 @@
     <section id="accueil" class="tabcontent">
       <div class="hero">
         <div class="hero-left">
-          <h2>Bienvenue chez Parfumerie Élégance</h2>
-          <p>Des collections sélectionnées pour révéler votre signature olfactive. Explorez, testez et commandez en quelques clics.</p>
+          <h2>Parfums uniques, émotions durables</h2>
+          <p>Des collections sélectionnées pour révéler ta signature olfactive. Explore, teste et commande en quelques clics.</p>
+
           <div class="search">
             <input id="searchInput" placeholder="Rechercher parfum, marque ou note..." />
             <button class="btn primary" id="searchBtn">Rechercher</button>
@@ -125,24 +197,29 @@
             <button class="btn ghost" onclick="switchTab('decouvrir')">Découvrir nos nouveautés</button>
             <button class="btn primary" onclick="switchTab('commander')">Commander maintenant</button>
           </div>
+
+          <div class="inscription">
+            <div style="font-size:18px;font-weight:600">LM.biouty — L'art du sillage</div>
+            <div style="font-size:13px;margin-top:6px;color:rgba(255,255,255,0.92)">Parfums sélectionnés • Coffrets élégants • Emballages soignés</div>
+          </div>
         </div>
 
         <aside class="hero-right">
-          <h4 style="margin-bottom:8px">Coup de cœur</h4>
+          <h4 style="margin-bottom:8px;color:var(--blanc)">Coup de cœur</h4>
           <div class="featured">
             <div class="perfume">
               <img src="https://images.unsplash.com/photo-1542038784456-0f9c1b3a6b13?auto=format&fit=crop&w=600&q=60" alt="flacon" />
             </div>
             <div>
-              <strong>Rêve de Rose — 50ml</strong>
-              <p style="color:var(--muted);margin-top:8px">Une rose moderne, velours et ambre. Parfait pour les soirées.</p>
+              <strong style="color:var(--blanc)">Rêve de Rose — 50ml</strong>
+              <p style="color:rgba(255,255,255,0.9);margin-top:8px">Une rose moderne, velours et ambre. Parfait pour les soirées.</p>
               <div style="margin-top:10px"><span class="price">39 000 XAF</span></div>
             </div>
           </div>
         </aside>
       </div>
 
-      <h3 style="margin-top:18px;margin-bottom:12px">Produits populaires</h3>
+      <h3 style="margin-top:18px;margin-bottom:12px;color:var(--blanc)">Produits populaires</h3>
       <div class="grid" id="productsGrid">
         <!-- Cards ajoutés via JS -->
       </div>
@@ -150,11 +227,11 @@
 
     <!-- Découvrir -->
     <section id="decouvrir" class="tabcontent" style="display:none">
-      <h2>Découvrir</h2>
-      <p style="color:var(--muted);margin-bottom:12px">Parcourez nos collections, filtrer par notes et marque.</p>
+      <h2 class="section-title">Découvrir</h2>
+      <p style="color:var(--blanc);margin-bottom:12px">Parcourez nos collections, filtre par notes et marques.</p>
 
       <div style="margin-bottom:16px">
-        <label>Filtrer par note :</label>
+        <label style="color:var(--blanc)">Filtrer par note :</label>
         <select id="filterNote">
           <option value="">-- Toutes --</option>
           <option value="floral">Floral</option>
@@ -169,8 +246,8 @@
 
     <!-- Commander -->
     <section id="commander" class="tabcontent" style="display:none">
-      <h2>Commander</h2>
-      <p style="color:var(--muted);margin-bottom:12px">Remplissez le formulaire ci‑dessous pour valider votre commande.</p>
+      <h2 class="section-title">Commander</h2>
+      <p style="color:var(--blanc);margin-bottom:12px">Remplissez le formulaire ci-dessous pour valider votre commande.</p>
 
       <div class="columns">
         <div class="card">
@@ -207,8 +284,8 @@
 
     <!-- À propos -->
     <section id="apropos" class="tabcontent" style="display:none">
-      <h2>À propos de Parfumerie Élégance</h2>
-      <p style="color:var(--muted);margin-top:10px">Nous mettons en avant des parfums sélectionnés pour leur qualité et leur originalité. Livraison partout au Gabon.</p>
+      <h2 class="section-title">À propos de Parfumerie Élégance</h2>
+      <p style="color:var(--blanc);margin-top:10px">Nous mettons en avant des parfums sélectionnés pour leur qualité et leur originalité. Livraison partout au Gabon.</p>
 
       <div style="margin-top:16px" class="grid">
         <div class="card">
@@ -228,8 +305,8 @@
 
     <!-- Contact -->
     <section id="contact" class="tabcontent" style="display:none">
-      <h2>Contact</h2>
-      <p style="color:var(--muted);margin-top:10px">Nous sommes là pour vous aider — envoyez un message.</p>
+      <h2 class="section-title">Contact</h2>
+      <p style="color:var(--blanc);margin-top:10px">Nous sommes là pour vous aider — envoyez un message.</p>
 
       <div class="columns" style="margin-top:12px">
         <div>
@@ -254,21 +331,20 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer class="container">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
       <div>
-        <strong>Parfumerie Élégance</strong>
-        <div style="color:var(--muted)">© <span id="year"></span> — Tous droits réservés.</div>
+        <strong style="color:var(--blanc)">Parfumerie Élégance</strong>
+        <div style="color:rgba(255,255,255,0.9)">© <span id="year"></span> — Tous droits réservés.</div>
       </div>
-      <div style="color:var(--muted)">Suivez-nous : Instagram • Facebook • X</div>
+      <div style="color:rgba(255,255,255,0.9)">Suivez-nous : Instagram • Facebook • X</div>
     </div>
   </footer>
 
   <!-- Modal -->
-  <div id="modalBackdrop" class="modal-backdrop">
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <div>
         <img id="modalImg" src="" alt="produit" style="width:100%;border-radius:10px;height:320px;object-fit:cover" />
@@ -289,7 +365,7 @@
     // ---------- Données d'exemple ----------
     const products = [
       {id:1,title:'Rêve de Rose — 50ml',price:39000,notes:['floral'],img:'https://images.unsplash.com/photo-1542038784456-0f9c1b3a6b13?auto=format&fit=crop&w=800&q=60'},
-      {id:2,title:'Bois d'Or — 75ml',price:54000,notes:['boisé'],img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
+      {id:2,title:'Bois d\'Or — 75ml',price:54000,notes:['boisé'],img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
       {id:3,title:'Brise Marine — 100ml',price:46000,notes:['frais'],img:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=60'},
       {id:4,title:'Ambre Mystique — 50ml',price:62000,notes:['oriental'],img:'https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=800&q=60'},
       {id:5,title:'Jardin Secret — 30ml',price:28000,notes:['floral'],img:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=60'},
@@ -304,18 +380,19 @@
 
     // ---------- Rendu produits ----------
     function renderProducts(gridEl, list){
+      if(!gridEl) return;
       gridEl.innerHTML = '';
       list.forEach(p=>{
         const div = document.createElement('div'); div.className = 'card';
         div.innerHTML = `
           <img src="${p.img}" alt="${p.title}"/>
           <h3>${p.title}</h3>
-          <div style=\"color:var(--muted);margin-bottom:8px\">Notes: ${p.notes.join(', ')}</div>
-          <div style=\"display:flex;justify-content:space-between;align-items:center\"> 
-            <div class=\"price\">${formatPrice(p.price)}</div>
-            <div style=\"display:flex;gap:8px\">
-              <button class=\"btn ghost\" onclick=\"openModal(${p.id})\">Voir</button>
-              <button class=\"btn primary\" onclick=\"addProductToCart(${p.id})\">Acheter</button>
+          <div style="color:${getComputedStyle(document.documentElement).getPropertyValue('--muted') || '#666'};margin-bottom:8px">Notes: ${p.notes.join(', ')}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center"> 
+            <div class="price">${formatPrice(p.price)}</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn ghost" onclick="openModal(${p.id})">Voir</button>
+              <button class="btn primary" onclick="addProductToCart(${p.id})">Acheter</button>
             </div>
           </div>
         `;
@@ -325,56 +402,79 @@
 
     // initial render
     document.addEventListener('DOMContentLoaded', ()=>{
-      document.getElementById('year').textContent = new Date().getFullYear();
+      const yearEl = document.getElementById('year');
+      if(yearEl) yearEl.textContent = new Date().getFullYear();
       renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
       renderProducts(document.getElementById('discoverGrid'), products);
+      // attach tab listeners
+      document.querySelectorAll('[data-tab]').forEach(a=> a.addEventListener('click', (e)=>{ e.preventDefault(); switchTab(a.dataset.tab); }));
     });
 
     // ---------- Tabs ----------
-    const tabs = document.querySelectorAll('[data-tab]');
-    tabs.forEach(a=> a.addEventListener('click', (e)=>{ e.preventDefault(); switchTab(a.dataset.tab); }));
     function switchTab(name){
       // hide all
       document.querySelectorAll('.tabcontent').forEach(s=> s.style.display='none');
-      document.getElementById(name).style.display = '';
+      const target = document.getElementById(name);
+      if(target) target.style.display = '';
       // set active
       document.querySelectorAll('#menu a').forEach(a=>a.classList.remove('active'));
-      const active = document.querySelector(#menu a[data-tab='${name}']);
+      const active = document.querySelector(`#menu a[data-tab='${name}']`);
       if(active) active.classList.add('active');
+      // scroll to top of section (smooth)
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
     }
 
     // ---------- Modal ----------
     function openModal(id){
       const p = products.find(x=>x.id===id);
+      if(!p) return;
+      const modalBackdrop = document.getElementById('modalBackdrop');
       document.getElementById('modalImg').src = p.img;
       document.getElementById('modalTitle').textContent = p.title;
       document.getElementById('modalDesc').textContent = 'Notes: ' + p.notes.join(', ');
       document.getElementById('modalPrice').textContent = formatPrice(p.price);
-      document.getElementById('modalBackdrop').style.display = 'flex';
-      document.getElementById('addToCart').onclick = ()=>{ addProductToCart(id); closeModal(); switchTab('commander'); }
+      if(modalBackdrop){
+        modalBackdrop.style.display = 'flex';
+        modalBackdrop.setAttribute('aria-hidden','false');
+      }
+      const addBtn = document.getElementById('addToCart');
+      if(addBtn){
+        addBtn.onclick = ()=>{ addProductToCart(id); closeModal(); switchTab('commander'); }
+      }
     }
-    function closeModal(){ document.getElementById('modalBackdrop').style.display = 'none'; }
-    document.getElementById('modalBackdrop').addEventListener('click', (e)=>{ if(e.target.id==='modalBackdrop') closeModal(); });
+    function closeModal(){ 
+      const modalBackdrop = document.getElementById('modalBackdrop');
+      if(modalBackdrop){
+        modalBackdrop.style.display = 'none';
+        modalBackdrop.setAttribute('aria-hidden','true');
+      }
+    }
+    document.getElementById('modalBackdrop')?.addEventListener('click', (e)=>{ if(e.target.id==='modalBackdrop') closeModal(); });
 
     // ---------- Cart / Order ----------
     function addProductToCart(id){
       const p = products.find(x=>x.id===id);
+      if(!p) return;
       cart.push(p);
       updateCartUI();
-      toast(${p.title} ajouté au panier);
+      toast(`${p.title} ajouté au panier`);
     }
     function updateCartUI(){
-      document.getElementById('btnCart').textContent = Panier (${cart.length});
+      const btnCart = document.getElementById('btnCart');
+      if(btnCart) btnCart.textContent = `Panier (${cart.length})`;
       const summary = document.getElementById('orderSummary');
+      if(!summary) return;
       if(cart.length===0){ summary.innerHTML = 'Aucun produit sélectionné.'; return }
-      let html = '<ul>' + cart.map((c,i)=><li>${i+1}. ${c.title} — <strong>${formatPrice(c.price)}</strong></li>).join('') + '</ul>';
-      html += <div style="margin-top:12px;font-weight:800">Total : ${formatPrice(cart.reduce((s,c)=>s+c.price,0))}</div>;
+      let html = '<ul style="padding-left:18px;margin:0">';
+      html += cart.map((c,i)=> `<li style="margin-bottom:6px">${i+1}. ${c.title} — <strong>${formatPrice(c.price)}</strong></li>`).join('');
+      html += '</ul>';
+      html += `<div style="margin-top:12px;font-weight:800">Total : ${formatPrice(cart.reduce((s,c)=>s+c.price,0))}</div>`;
       summary.innerHTML = html;
     }
     function clearCart(){ cart = []; updateCartUI(); }
 
     // Handle order form submit (frontend-only demo)
-    document.getElementById('orderForm').addEventListener('submit', (e)=>{
+    document.getElementById('orderForm')?.addEventListener('submit', (e)=>{
       e.preventDefault();
       if(cart.length===0){ alert('Ajoutez au moins un produit au panier.'); return }
       const payload = {
@@ -391,23 +491,26 @@
     });
 
     // Contact form
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
       e.preventDefault();
       alert('Merci pour votre message — nous vous répondrons bientôt. (simulation)');
       e.target.reset();
     });
 
     // Filters
-    document.getElementById('filterNote').addEventListener('change', ()=>{
+    document.getElementById('filterNote')?.addEventListener('change', ()=>{
       const v = document.getElementById('filterNote').value;
       const list = v? products.filter(p=>p.notes.includes(v)) : products;
       renderProducts(document.getElementById('discoverGrid'), list);
     });
 
     // Search
-    document.getElementById('searchBtn').addEventListener('click', ()=>{
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      if(!q) return renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
+    document.getElementById('searchBtn')?.addEventListener('click', ()=>{
+      const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+      if(!q) {
+        renderProducts(document.getElementById('productsGrid'), products.slice(0,3));
+        return;
+      }
       const found = products.filter(p=> p.title.toLowerCase().includes(q) || p.notes.join(' ').includes(q));
       renderProducts(document.getElementById('productsGrid'), found);
       switchTab('accueil');
@@ -416,9 +519,12 @@
     // Simple toast
     function toast(msg){
       const el = document.createElement('div');
-      el.textContent = msg; el.style.position='fixed';el.style.right='20px';el.style.bottom='20px';el.style.background='rgba(0,0,0,0.8)';el.style.color='white';el.style.padding='10px 14px';el.style.borderRadius='8px';el.style.zIndex=120;
+      el.textContent = msg; 
+      el.style.position='fixed'; el.style.right='20px'; el.style.bottom='20px';
+      el.style.background='rgba(0,0,0,0.8)'; el.style.color='white'; el.style.padding='10px 14px'; el.style.borderRadius='8px'; el.style.zIndex=120;
+      el.style.fontFamily='"Times New Roman", Times, serif';
       document.body.appendChild(el);
-      setTimeout(()=> el.style.opacity=0,2200);
+      setTimeout(()=> el.style.opacity='0',2200);
       setTimeout(()=> el.remove(),2700);
     }
 
